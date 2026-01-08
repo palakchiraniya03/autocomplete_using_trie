@@ -2,6 +2,7 @@
 #include<vector>
 #include<string>
 #include<fstream>
+#include<cctype>
 using namespace std;
 
 class TrieNode{
@@ -26,6 +27,9 @@ class Trie{
   }
 
   void insert(string word){
+    for(char &c:word){
+      c=tolower(c);
+    }
     TrieNode* curr=root;
     for(char c:word){
       int index=c-'a';
@@ -86,6 +90,9 @@ int main(){
   string prefix;
   cout<<"enter a letter or a bunch of letters: ";
   cin>>prefix;
+  for(char &c:prefix){
+    c=tolower(c);
+  }
 
   vector<string> results=trie.autocomplete(prefix);
 
