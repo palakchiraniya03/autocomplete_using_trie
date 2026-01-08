@@ -1,6 +1,7 @@
 #include <iostream>
 #include<vector>
 #include<string>
+#include<fstream>
 using namespace std;
 
 class TrieNode{
@@ -67,12 +68,20 @@ class Trie{
   }
 };
 
+void loadWordsFromFile(Trie& trie){
+    ifstream file("dictionary.txt");
+    string word;
+
+    while (file >> word) {
+        trie.insert(word);
+    }
+    file.close();
+}
+
+
 int main(){
   Trie trie;
-  trie.insert("apple");
-  trie.insert("app");
-  trie.insert("application");
-  trie.insert("banana");
+  loadWordsFromFile(trie);
 
   string prefix;
   cout<<"enter a letter or a bunch of letters: ";
